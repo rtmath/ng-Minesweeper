@@ -11,6 +11,7 @@ const MINE = 9;
 export class AppComponent {
   boardWidth: number = null;
   board: number[][];
+  revealed: boolean[][];
   totalMines: number;
 
   setBoardWidth(width: number) {
@@ -33,13 +34,38 @@ export class AppComponent {
 
   createBoard(width) {
     this.board = [];
+    this.revealed = [];
 
     for (var i = 0; i < width; i++) {
       this.board[i] = [];
+      this.revealed[i] = [];
       for (var j = 0; j < width; j++) {
         this.board[i][j] = 0;
+        this.revealed[i][j] = false;
       }
     }
     this.placeMines();
+    this.checkForMines();
+  }
+
+  checkForMines() {
+    for (var i = 0; i < this.boardWidth; i++) {
+      for (var j = 0; j < this.boardWidth; j++) {
+        if (this.board[i][j] === MINE) {
+          for (var x = -1; x < 2; x++) {
+            for (var y = -1; y < 2; y++) {
+              if (  i + x >= 0 &&
+                    j + y >= 0 &&
+                    i + x < this.boardWidth &&
+                    j + y < this.boardWidth) {
+                if (this.board[i+x][j+y] != MINE) {
+                  this.board[i+x][j+y] += 1;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

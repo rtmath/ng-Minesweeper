@@ -1,4 +1,9 @@
-<div *ngFor="let row of board" class="row">
-  <div *ngFor="let col of row" class="cell" [ngClass]="{mine: col === 9}">
+<div *ngFor="let row of board; let i = index" class="row">
+  <div
+      class="cell"
+      *ngFor="let col of row; let j = index"
+      [ngClass]="{'mine': col === 9, 'reveal': revealed[i][j] === true}"
+      (click)="revealSquare(i, j);setStyle(i, j)">
+      <span *ngIf="revealed[i][j] && col != 0">{{col}}</span>
   </div>
 </div>

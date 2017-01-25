@@ -7,10 +7,20 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class BoardComponent implements OnInit {
   @Input() board: number[][];
+  @Input() revealed: boolean[][];
 
+  showStyle: true;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  setStyle(i, j) {
+    return (this.revealed[i][j]) ? "yellow" : "";
+  }
+
+  revealSquare(i: number, j: number) {
+    this.revealed[i][j] = true;
   }
 
 }
