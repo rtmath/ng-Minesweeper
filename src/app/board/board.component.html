@@ -1,0 +1,4 @@
+<div *ngFor="let row of board" class="row">
+  <div *ngFor="let col of row" class="cell" [ngClass]="{mine: col === 9}">
+  </div>
+</div>

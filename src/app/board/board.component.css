@@ -1,0 +1,10 @@
+.cell {
+  float: left;
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+}
+
+.mine{
+  background-color: red;
+}
