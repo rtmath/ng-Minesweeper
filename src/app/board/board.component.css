@@ -1,3 +1,10 @@
+.board-container {
+
+}
+
+.row {
+  padding-bottom: 0;
+}
 
 .cell {
   float: left;
@@ -17,4 +24,8 @@
 
 .grey {
   background-color: grey;
+}
+
+.mine{
+  background-color: red;
 }

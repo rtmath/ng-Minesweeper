@@ -7,15 +7,15 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class BoardSettingsComponent implements OnInit {
 
-  @Output() widthSender = new EventEmitter();
+  @Output() startGameSender = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  getWidth(width: number) {
-    this.widthSender.emit(width);
+  startGame(width: number) {
+    this.startGameSender.emit(width);
   }
 
 }

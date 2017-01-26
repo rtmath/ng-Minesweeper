@@ -1,5 +1,14 @@
 <div class="container text-center">
   <h1>Minesweeper</h1>
-  <board-settings (widthSender)="setBoardWidth($event)"></board-settings>
-  <board [board]="board" [revealed]="revealed" [boardWidth]="boardWidth"></board>
+  <board-settings (startGameSender)="startGame($event)"></board-settings>
+  <board
+    [board]="board"
+    [revealed]="revealed"
+    [boardWidth]="boardWidth"
+    [totalMines]="totalMines"
+    [(victoryBool)]="victoryBool"
+    [(defeatBool)]="defeatBool"
+    (victory)="victory()"
+    (defeat)="defeat()">
+</board>
 </div>

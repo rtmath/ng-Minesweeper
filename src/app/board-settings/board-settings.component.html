@@ -1,7 +1,7 @@
 <form>
   <div class="form-group">
     <label>Enter board width:</label>
-    <input type="number" class="form-control" #boardWidth>
-    <button (click)="getWidth(boardWidth.value)" class="btn btn-info">Start Game!</button>
+    <input type="number" class="form-control" min="4" max="23" #boardWidth>
+    <button (click)="startGame(boardWidth.value)" class="btn btn-info">Start Game!</button>
   </div>
 </form>

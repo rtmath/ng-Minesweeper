@@ -1,11 +1,14 @@
 
-
-<div *ngFor="let row of board; let i = index" class="row">
-  <div
-      class="cell"
-      *ngFor="let col of row; let j = index"
-      [ngClass]="{'grey': revealed[i][j] === false, 'reveal': revealed[i][j] === true}"
-      (click)="RevealNextCell(i, j)">
-      <span *ngIf="revealed[i][j] && col != 0">{{col}}</span>
+<div class="board-container">
+  <div *ngFor="let row of board; let i = index" class="row">
+    <div
+        class="cell"
+        *ngFor="let col of row; let j = index"
+        [ngClass]="{'grey': revealed[i][j] === false, 'reveal': revealed[i][j] === true, 'mine': revealed[i][j] === true && col === 9}"
+        (click)="RevealNextCell(i, j); checkForGameOver(i, j); checkForVictory()">
+        <span *ngIf="revealed[i][j] && col > 0 && col < 9">{{col}}</span>
+    </div>
   </div>
+  <div *ngIf="victoryBool">You did it! You won!!</div>
+  <div *ngIf="defeatBool">You lost! Better luck next time.</div>
 </div>

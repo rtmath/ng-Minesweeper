@@ -13,11 +13,25 @@ export class AppComponent {
   board: number[][];
   revealed: boolean[][];
   totalMines: number;
+  victoryBool: boolean;
+  defeatBool: boolean;
 
-  setBoardWidth(width: number) {
-    this.boardWidth = width;
-    this.totalMines = width;
-    this.createBoard(width);
+  startGame(width: number) {
+    if (width > 3 && width < 24) {
+      this.boardWidth = width;
+      this.totalMines = width;
+      this.createBoard(width);
+      this.victoryBool = false;
+      this.defeatBool = false;
+    }
+  }
+
+  victory() {
+    this.victoryBool = true;
+  }
+
+  defeat() {
+    this.defeatBool = true;
   }
 
   placeMines(){
