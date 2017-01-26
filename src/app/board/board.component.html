@@ -3,7 +3,7 @@
       class="cell"
       *ngFor="let col of row; let j = index"
       [ngClass]="{'mine': col === 9, 'reveal': revealed[i][j] === true}"
-      (click)="revealSquare(i, j);setStyle(i, j)">
+      (click)="someFunction(i, j)">
       <span *ngIf="revealed[i][j] && col != 0">{{col}}</span>
   </div>
 </div>
