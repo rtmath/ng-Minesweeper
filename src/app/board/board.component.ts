@@ -13,43 +13,44 @@ export class BoardComponent implements OnInit {
   @Input() boardWidth: number;
 
   showStyle: true;
-  toCheck: number[][];
+  emptiesArray: number[][] = [];
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  setStyle(i, j) {
-    return (this.revealed[i][j]) ? "yellow" : "";
+  Reveal(x, y) {
+    this.RevealNextCell(x - 1, y - 1);
+    this.RevealNextCell(x - 1, y);
+    this.RevealNextCell(x - 1, y + 1);
+
+    this.RevealNextCell(x, y - 1);
+    this.RevealNextCell(x, y + 1);
+
+    this.RevealNextCell(x + 1, y);
+    this.RevealNextCell(x + 1, y - 1);
+    this.RevealNextCell(x + 1, y + 1);
   }
 
-  revealSquare(i: number, j: number) {
-    this.revealed[i][j] = true;
-  }
+  RevealNextCell(x, y) {
+    if (
+      this.isInBounds(x, y) &&
+      this.revealed[x][y] != true) {
 
-  prepareToCheck(i: number, j: number) {
-    var array = [i, j];
-    this.toCheck.push(array);
-  }
-
-  someFunction(i: number, j: number) {
-    this.toCheck = [];
-    if (this.board[i][j] != MINE && this.board[i][j] === 0) {
-      for (var x = -1; x < 2; x++) {
-        for (var y = -1; y < 2; y++) {
-          if (  i + x >= 0 &&
-            j + y >= 0 &&
-            i + x < this.boardWidth &&
-            j + y < this.boardWidth) {
-              this.prepareToCheck(i+x, j+y);
-          }
+        if (this.board[x][y] === 0) {
+          this.revealed[x][y] = true;
+          this.Reveal(x, y);
+        } else {
+          this.revealed[x][y] = true;
         }
-      }
     }
-    this.toCheck.forEach(function(elem) {
-      this.revealSquare(elem[0], elem[1]);
-    })
+  }
 
+  isInBounds(i, j) {
+    return (i >= 0 &&
+          j >= 0 &&
+          i < this.boardWidth &&
+          j < this.boardWidth) ? true : false;
   }
 }

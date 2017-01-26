@@ -12,6 +12,9 @@
 }
 
 .reveal {
-  background-color: yellow;
   color: seagreen;
+}
+
+.grey {
+  background-color: grey;
 }
